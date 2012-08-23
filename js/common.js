@@ -44,26 +44,43 @@ $(document).ready(function(){
         results.each(function(){
             var url = $(this).find('a').attr('href');
             var index = cleanResults.indexOf(url);
-            var span = $('<span>').attr('style', 'color:red;font-size:small;padding-left:5px');
+            var span = $('<span>').css({
+                'color': 'red',
+                'padding-right': '5px',
+                'font-size': 'small'
+            });
 
             if (index != -1) {
                 if (index != iter) {
-                    span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
-                  //if (index > iter) {
-                  //    span.html('&#9650;');
-                  //} else {
-                  //    span.html('&#9660;');
-                  //}
+                    //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
+                    if (index > iter) {
+                        span.html((index - iter)+ '&#8593;');
+                    } else {
+                        span.html((iter - index)+ '&#8595;');
+                    } 
+                } else {
+                    span.css('padding-right', '0px');
                 }
-                $(this).find('h3').append(span);
+                $(this).find('h3').prepend(span);
             } else {
-                var div = $('<div>').css({
-                            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
-                            'height': '16px',
-                            'width': '16px',
-                            'float': 'left'
-                            });
-                $(this).find('h3').prepend(div);
+              //var div = $('<div>').css({
+              //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
+              //            'height': '16px',
+              //            'width': '16px',
+              //            'float': 'left',
+              //            'background-repeat': 'no-repeat',
+              //            'padding-right': '2px'
+              //            });
+              //$(this).find('h3').prepend(div);
+              span.css({ 
+                'color': '#b8b8b8',
+                'font-size': 'x-large',
+                'font-weight': 'bold',
+                'padding': '0 3px 0 0'
+              });
+              span.html('+');
+              $(this).find('h3').prepend(span);
+
             }
             iter += 1;
         });
