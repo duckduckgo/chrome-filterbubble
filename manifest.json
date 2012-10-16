@@ -1,6 +1,6 @@
 {
   "name": "DuckDuckGo Filter Bubble",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "DuckDuckGo Filter Bubble plugin",
   "icons": {
@@ -11,10 +11,6 @@
   "permissions": [
     "http://search.aol.com/*"
   ],
-  "browser_action": {
-      "default_icon": "img/icon_16.png",
-      "popup": "html/popup.html"
-  },
   "content_scripts": [
   {
         "matches": [
