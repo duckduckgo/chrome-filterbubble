@@ -15,9 +15,7 @@ function getQueryFromURL() {
     }
 }
 
-
-$(document).ready(function(){
-    //console.log(results);
+function updateResults() {
     var query = getQueryFromURL();
     console.log(query);
     
@@ -119,6 +117,15 @@ $(document).ready(function(){
 
         });
     });
+
+}
+
+
+window.addEventListener("hashchange", updateResults, false);
+
+$(document).ready(function(){
+    //console.log(results);
+    updateResults();
 });
 
 
