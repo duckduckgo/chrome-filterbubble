@@ -25,7 +25,20 @@ function updateResults() {
         var cleanResultsData = [];
         var dirtyResults = [];
 
+
         r.each(function(){
+            console.log($(this).find('a').eq(0));
+
+            // ignoring sub-links
+            if ($(this).find('a').eq(0).hasClass('sitelink')) {
+                return;
+            }
+            
+            // ignoring news boxes
+            if ($(this).find('div').eq(0).hasClass('univ_news')) {
+                return;
+            }
+
             var url = $(this).find('a').attr('href');
             var title = $(this).find('a').html();
             var desc = $(this).find('p:not(.find)').html();
@@ -62,18 +75,19 @@ function updateResults() {
 
             var index = cleanResults.indexOf(url);
             var span = $('<span>').css({
-                'color': 'red',
+                'color': '#b8b8b8',
                 'padding-right': '5px',
-                'font-size': 'small'
+                'font-weight': 'bold',
+                'font-size': 'x-small'
             });
 
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
                     if (index > iter) {
-                        span.html((index - iter)+ '&#8593;');
+                        span.html('&#8593;' + (index - iter));
                     } else {
-                        span.html((iter - index)+ '&#8595;');
+                        span.html('&#8595;' +(iter - index));
                     } 
                 } else {
                     span.css('padding-right', '0px');
@@ -90,9 +104,7 @@ function updateResults() {
               //            });
               //$(this).find('h3').prepend(div);
               span.css({ 
-                'color': '#b8b8b8',
                 'font-size': 'x-large',
-                'font-weight': 'bold',
                 'padding': '0 3px 0 0'
               });
               span.html('+');
@@ -167,7 +179,7 @@ function getAOLResults(query, callback) {
         console.log('response:', req.responseText);
         var r = $('div', req.responseText);
 
-        r = r.find('.MSL li[about="null"]');
+        r = r.find('.MSL li');
         console.log(r);
         callback(r);
     }
