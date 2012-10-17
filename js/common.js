@@ -4,6 +4,9 @@
 //  if (regexp.test(window.location.href)) {
 
 //  }
+//
+
+const EXTENSION_TEXT = ' (filter bubble extension)';
 
 function getQueryFromURL() {
     var regex = new RegExp('[\?\&]q=([^\&#]+)');
@@ -85,9 +88,13 @@ function updateResults() {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
                     if (index > iter) {
-                        span.html('&#8593;' + (index - iter));
+                        span.html('&#8593;' + (index - iter))
+                            .attr('title', 'Moved up ' +(index - iter)+ ' spots' + 
+                                            EXTENSION_TEXT);
                     } else {
-                        span.html('&#8595;' +(iter - index));
+                        span.html('&#8595;' +(iter - index))
+                            .attr('title', 'Moved down ' +(iter - index)+ ' spots' +
+                                            EXTENSION_TEXT);
                     } 
                 } else {
                     span.css('padding-right', '0px');
@@ -107,7 +114,10 @@ function updateResults() {
                 'font-size': 'x-large',
                 'padding': '0 3px 0 0'
               });
-              span.html('+');
+
+              span.html('+')
+                  .attr('title', 'Added result' + EXTENSION_TEXT);
+
               $(this).find('h3').prepend(span);
 
             }
@@ -152,8 +162,9 @@ function generateGoogleResult(r) {
                 'font-size': 'x-large',
                 'font-weight': 'bold',
                 'padding': '0 3px 0 0'
-              });
-    span.html('-');
+              })
+        .html('-')
+        .attr('title', 'Missing result' + EXTENSION_TEXT);
  
     var resultDiv = $('<div>').attr('class', 'vsc');
     resultDiv.append($('<h3>').prepend(span).append(
