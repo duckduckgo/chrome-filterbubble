@@ -392,7 +392,7 @@
             ],
             "js": [
                 "js/jquery.js",
-                "js/common.js"
+                "js/fliterbubble.js"
             ]
         }
   ]
