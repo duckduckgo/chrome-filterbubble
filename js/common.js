@@ -81,7 +81,7 @@ function updateResults() {
                 'color': '#b8b8b8',
                 'padding-right': '5px',
                 'font-weight': 'bold',
-                'font-size': 'x-small'
+                'font-size': 'small'
             });
 
             if (index != -1) {
