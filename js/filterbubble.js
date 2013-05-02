@@ -77,29 +77,24 @@ function updateResults() {
                 return;
 
             var index = cleanResults.indexOf(url);
-            var span = $('<div>').css({
-                'color': '#b8b8b8',
-                'font-weight': 'bold',
-                'font-size': 'small'
-            });
-            span.addClass('ddg_filterbubble_box');
+            var span = $('<div>').addClass('ddg_filterbubble_box');
 
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
                     if (index > iter) {
-                        span.html('&nbsp;' + (index - iter))
+                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + (index - iter))
                             .attr('title', 'Moved up ' +(index - iter)+ ' spots' + 
                                             EXTENSION_TEXT);
                         span.addClass('ddg_filterbubble_box_move-up');
                     } else {
-                        span.html('&nbsp;' +(iter - index))
+                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +(iter - index))
                             .attr('title', 'Moved down ' +(iter - index)+ ' spots' +
                                             EXTENSION_TEXT);
                         span.addClass('ddg_filterbubble_box_move-down');
                     } 
                 } else {
-                    span.css('padding-right', '0px');
+                    span.removeClass('ddg_filterbubble_box');
                 }
                 $(this).find('h3').prepend(span);
             } else {
@@ -150,16 +145,9 @@ $(document).ready(function(){
 
 
 function generateGoogleResult(r) {
-    var span = $('<span>').css({
-                'color': 'red',
-                'font-size': 'small'
-            });
-    span.css({ 
-                'color': '#b8b8b8',
-                'font-size': 'x-large',
-                'font-weight': 'bold',
-              })
-        .html('-')
+    var span = $('<div>')
+        .addClass('ddg_filterbubble_box')
+        .addClass('ddg_filterbubble_box_removed')
         .attr('title', 'Missing result' + EXTENSION_TEXT);
  
     var resultDiv = $('<div>').attr('class', 'vsc');
