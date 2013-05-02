@@ -392,8 +392,20 @@
             ],
             "js": [
                 "js/jquery.js",
-                "js/fliterbubble.js"
+                "js/filterbubble.js"
+            ],
+            "css": [
+                "css/filterbubble.css" 
             ]
-        }
+       }
+  ],
+  "web_accessible_resources": [
+      "img/button-1-bg.png",
+      "img/button-2-bg.png",
+      "img/up.png",
+      "img/down.png",
+      "img/plus.png",
+      "img/minus.png"
+
   ]
 }

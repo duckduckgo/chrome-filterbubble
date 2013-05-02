@@ -1,0 +1,31 @@
+.ddg_filterbubble_box {
+    width: 18px !important;
+    height: 18px !important;
+    float: left;
+    margin-right: 5px;
+}
+
+.ddg_filterbubble_box_move {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/img/button-1-bg.png');
+}
+
+.ddg_filterbubble_box_change {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/img/button-2-bg.png');
+}
+
+.ddg_filterbubble_box_added {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/plus.png');
+}
+
+.ddg_filterbubble_box_removed {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/minus.png');
+}
+
+.ddg_filterbubble_box_move-up {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/up.png');
+}
+
+.ddg_filterbubble_box_move-down {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/down.png');
+}
+

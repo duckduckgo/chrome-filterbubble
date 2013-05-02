@@ -77,24 +77,26 @@ function updateResults() {
                 return;
 
             var index = cleanResults.indexOf(url);
-            var span = $('<span>').css({
+            var span = $('<div>').css({
                 'color': '#b8b8b8',
-                'padding-right': '5px',
                 'font-weight': 'bold',
                 'font-size': 'small'
             });
+            span.addClass('ddg_filterbubble_box');
 
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
                     if (index > iter) {
-                        span.html('&#8593;' + (index - iter))
+                        span.html('&nbsp;' + (index - iter))
                             .attr('title', 'Moved up ' +(index - iter)+ ' spots' + 
                                             EXTENSION_TEXT);
+                        span.addClass('ddg_filterbubble_box_move-up');
                     } else {
-                        span.html('&#8595;' +(iter - index))
+                        span.html('&nbsp;' +(iter - index))
                             .attr('title', 'Moved down ' +(iter - index)+ ' spots' +
                                             EXTENSION_TEXT);
+                        span.addClass('ddg_filterbubble_box_move-down');
                     } 
                 } else {
                     span.css('padding-right', '0px');
@@ -110,13 +112,9 @@ function updateResults() {
               //            'padding-right': '2px'
               //            });
               //$(this).find('h3').prepend(div);
-              span.css({ 
-                'font-size': 'x-large',
-                'padding': '0 3px 0 0'
-              });
 
-              span.html('+')
-                  .attr('title', 'Added result' + EXTENSION_TEXT);
+              span.attr('title', 'Added result' + EXTENSION_TEXT)
+                  .addClass('ddg_filterbubble_box_added');
 
               $(this).find('h3').prepend(span);
 
@@ -154,14 +152,12 @@ $(document).ready(function(){
 function generateGoogleResult(r) {
     var span = $('<span>').css({
                 'color': 'red',
-                'padding-right': '5px',
                 'font-size': 'small'
             });
     span.css({ 
                 'color': '#b8b8b8',
                 'font-size': 'x-large',
                 'font-weight': 'bold',
-                'padding': '0 3px 0 0'
               })
         .html('-')
         .attr('title', 'Missing result' + EXTENSION_TEXT);
