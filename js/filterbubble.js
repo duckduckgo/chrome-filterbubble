@@ -30,7 +30,8 @@ function updateResults() {
 
 
         r.each(function(){
-            console.log($(this).find('a').eq(0));
+            //console.log($(this).find('a').eq(0));
+            //console.log(this);
 
             // ignoring sub-links
             if ($(this).find('a').eq(0).hasClass('sitelink')) {
@@ -40,6 +41,11 @@ function updateResults() {
             // ignoring news boxes
             if ($(this).find('div').eq(0).hasClass('univ_news')) {
                 return;
+            }
+
+            // ignoring non-firstlevel links
+            if ($(this).attr('about') !== 'null') {
+                return; 
             }
 
             var url = $(this).find('a').attr('href');
