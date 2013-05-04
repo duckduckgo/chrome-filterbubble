@@ -171,7 +171,7 @@ function generateGoogleResult(r) {
 function getAOLResults(query, callback) {
     var req = new XMLHttpRequest();
     //req.open('GET', 'http://search.aol.com/aol/search?enabled_terms=&count_override=200&s_it=comsearch51&q=' + encodeURIComponent(query), true);
-    var url = 'http://search.aol.com/aol/search?enabled_terms=&s_it=comsearch51&q=' + encodeURIComponent(query);
+    var url = 'http://preview.search.aol.com/aol/search?enabled_terms=&s_it=comsearch51&q=' + encodeURIComponent(query);
     console.log(url);
     req.open('GET', url, true);
 
