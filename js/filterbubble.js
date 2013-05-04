@@ -6,7 +6,7 @@
 //  }
 //
 
-const EXTENSION_TEXT = ' (filter bubble extension)';
+const EXTENSION_TEXT = ' (due to your filter bubble)';
 
 function getQueryFromURL() {
     var regex = new RegExp('[\?\&]q=([^\&#]+)');
@@ -97,14 +97,17 @@ function updateResults() {
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
+                    var num = (index - iter);
                     if (index > iter) {
-                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + (index - iter))
-                            .attr('title', 'Moved up ' +(index - iter)+ ' spots' + 
+                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
+                            .attr('title', 'Link moved up ' + num + 
+                                            ' spot' + (num > 1 ? 's':'') + 
                                             EXTENSION_TEXT);
                         span.addClass('ddg_filterbubble_box_move-up');
                     } else {
-                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +(iter - index))
-                            .attr('title', 'Moved down ' +(iter - index)+ ' spots' +
+                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +num)
+                            .attr('title', 'Link moved down ' + num + 
+                                            ' spot' + (num > 1 ? 's':'') + 
                                             EXTENSION_TEXT);
                         span.addClass('ddg_filterbubble_box_move-down');
                     } 
