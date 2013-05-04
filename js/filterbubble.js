@@ -43,10 +43,10 @@ function updateResults() {
                 return;
             }
 
-            // ignoring non-firstlevel links
-          //if ($(this).attr('about') !== 'null') {
-          //    return; 
-          //}
+            // ignore latest tweets.
+            if ($(this).find('ul').eq(0).hasClass('enhBottom_twitter-profile-list')) {
+                return;
+            }
 
             var url = $(this).find('a').attr('href');
             var title = $(this).find('a').html();
@@ -184,7 +184,7 @@ function getAOLResults(query, callback) {
         console.log('response:', req.responseText);
         var r = $('div', req.responseText);
 
-        r = r.find('.MSL ul > li');
+        r = r.find('.MSL > ul > li');
         console.log(r);
         callback(r);
     }
