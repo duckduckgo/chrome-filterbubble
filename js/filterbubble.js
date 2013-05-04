@@ -9,7 +9,7 @@
 const EXTENSION_TEXT = ' (due to your filter bubble)';
 
 function getQueryFromURL() {
-    var regex = new RegExp('[\?\&]q=([^\&#]+)');
+    var regex = new RegExp('[#\?\&]q=([^\&#]+)');
     if(regex.test(window.location.href)) {
         var q = window.location.href.split(regex);
         q = q[q.length - 2].replace(/\+/g," ");
@@ -18,9 +18,24 @@ function getQueryFromURL() {
     }
 }
 
+function firstPage() {
+    var regex = new RegExp('[\?\&]start=([^\&#]+)');
+    if(regex.test(window.location.href)) {
+        if (RegExp.$1 === '0') {
+            return true; 
+        } else {
+            return false;
+        }
+    }
+    return true; 
+}
+
 function updateResults() {
     var query = getQueryFromURL();
-    console.log(query);
+
+    console.log(firstPage());
+    if (!firstPage())
+        return;
     
     getAOLResults(query, function(r){
         
@@ -200,11 +215,11 @@ function getAOLResults(query, callback) {
 
     req.onreadystatechange = function(data) {
         if (req.readyState != 4)  { return; } 
-        console.log('response:', req.responseText);
+        console.log('response:', req.responseText.length);
         var r = $('div', req.responseText);
 
         r = r.find('.MSL > ul > li');
-        console.log(r);
+        //console.log(r);
         callback(r);
     }
 
