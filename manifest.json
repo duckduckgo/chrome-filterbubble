@@ -9,7 +9,6 @@
       "128": "img/icon_128.png"
   },
   "permissions": [
-    "http://search.aol.com/*",
     "http://preview.search.aol.com/*"
   ],
   "content_scripts": [

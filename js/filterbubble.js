@@ -121,7 +121,7 @@ function updateResults() {
 
             }
 
-            console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
+            // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
                 
