@@ -126,7 +126,7 @@ function updateResults() {
               //            });
               //$(this).find('h3').prepend(div);
 
-              span.attr('title', 'Added result' + EXTENSION_TEXT)
+              span.attr('title', 'Link was added' + EXTENSION_TEXT)
                   .addClass('ddg_filterbubble_box_added');
 
               $(this).find('h3').prepend(span);
@@ -166,7 +166,7 @@ function generateGoogleResult(r) {
     var span = $('<div>')
         .addClass('ddg_filterbubble_box')
         .addClass('ddg_filterbubble_box_removed')
-        .attr('title', 'Missing result' + EXTENSION_TEXT);
+        .attr('title', 'Link was missing' + EXTENSION_TEXT);
  
     var resultDiv = $('<div>').attr('class', 'vsc');
     resultDiv.append($('<h3>').prepend(span).append(
