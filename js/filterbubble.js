@@ -44,13 +44,17 @@ function updateResults() {
             }
 
             // ignoring non-firstlevel links
-            if ($(this).attr('about') !== 'null') {
-                return; 
-            }
+          //if ($(this).attr('about') !== 'null') {
+          //    return; 
+          //}
 
             var url = $(this).find('a').attr('href');
             var title = $(this).find('a').html();
             var desc = $(this).find('p:not(.find)').html();
+
+            if ($(this).find('.videoDesc').length > 0) {
+                desc =  $(this).find('.videoDesc').html();
+            }
 
             cleanResults.push(url);
             cleanResultsData.push({url:url, title:title, desc:desc});
@@ -180,7 +184,7 @@ function getAOLResults(query, callback) {
         console.log('response:', req.responseText);
         var r = $('div', req.responseText);
 
-        r = r.find('.MSL li');
+        r = r.find('.MSL ul > li');
         console.log(r);
         callback(r);
     }
