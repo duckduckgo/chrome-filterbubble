@@ -399,6 +399,9 @@
             ]
        }
   ],
+  "background": {
+          "scripts": ["js/background.js"]
+  },
   "web_accessible_resources": [
       "img/button-1-bg.png",
       "img/button-2-bg.png",

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 DuckDuckGo, Inc.
+ * Copyright (C) 2012-2013 DuckDuckGo, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,12 @@
 function Background()
 {
     $this = this;
-    chrome.extension.onRequest.addListener(function(request, sender, callback){
+    chrome.extension.onMessage.addListener(function(request, sender, callback){
         console.log(request);
         if(request.query)
             $this.query(request.query, callback);
+        if (request.newtab)
+            $this.newtab(request.newtab);
     });
 
 
@@ -41,3 +43,10 @@ Background.prototype.query = function(query, callback)
     req.send(null);
 }
 
+Background.prototype.newtab = function(tab)
+{
+    chrome.tabs.create({url: tab});
+    return;
+}
+
+var background = new Background();

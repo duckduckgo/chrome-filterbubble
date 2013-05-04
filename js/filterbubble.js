@@ -92,19 +92,25 @@ function updateResults() {
                 return;
 
             var index = cleanResults.indexOf(url);
-            var span = $('<div>').addClass('ddg_filterbubble_box');
+            var span = $('<div>').addClass('ddg_filterbubble_box')
+                .click(function(){
+                      chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
+                                    function(){});
+                      return false;
+                });
 
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
-                    var num = (index - iter);
                     if (index > iter) {
+                        var num = (index - iter);
                         span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
                             .attr('title', 'Link moved up ' + num + 
                                             ' spot' + (num > 1 ? 's':'') + 
                                             EXTENSION_TEXT);
                         span.addClass('ddg_filterbubble_box_move-up');
                     } else {
+                        var num = (iter - index);
                         span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +num)
                             .attr('title', 'Link moved down ' + num + 
                                             ' spot' + (num > 1 ? 's':'') + 
@@ -166,7 +172,12 @@ function generateGoogleResult(r) {
     var span = $('<div>')
         .addClass('ddg_filterbubble_box')
         .addClass('ddg_filterbubble_box_removed')
-        .attr('title', 'Link was missing' + EXTENSION_TEXT);
+        .attr('title', 'Link was missing' + EXTENSION_TEXT)
+        .click(function(){
+            chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
+                            function(){});
+            return false;
+        });
  
     var resultDiv = $('<div>').attr('class', 'vsc');
     resultDiv.append($('<h3>').prepend(span).append(
