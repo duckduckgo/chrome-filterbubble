@@ -43,6 +43,11 @@ function updateResults() {
                 return;
             }
 
+            // ignore images.
+            if ($(this).find('div').eq(0).hasClass('univ_i_co')) {
+                return;
+            }
+
             // ignore latest tweets.
             if ($(this).find('ul').eq(0).hasClass('enhBottom_twitter-profile-list')) {
                 return;
