@@ -196,6 +196,10 @@ function generateGoogleResult(r) {
             chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
                             function(){});
             return false;
+        }).mouseover(function(){
+            $(this).addClass('ddg_filterbubble_active');
+        }).mouseout(function(){
+            $(this).removeClass('ddg_filterbubble_active');
         });
  
     var resultDiv = $('<div>').attr('class', 'vsc');

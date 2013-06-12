@@ -32,3 +32,7 @@
     background: url('chrome-extension://__MSG_@@extension_id__/img/down.png');
 }
 
+.ddg_filterbubble_active {
+    background-color: #e64d14;
+}
+
