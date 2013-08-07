@@ -180,14 +180,14 @@ function updateResults() {
 
 }
 
+function createTip(type, text) {
+    var tip = $('<div>').addClass('ddg_filterbubble_tip');
+}
 
 window.addEventListener("hashchange", updateResults, false);
 
 $(document).ready(function(){
     //console.log(results);
-    $('.ddg_filterbubble_box').aToolTip({
-        tipContent: 'asd <h1>aaa</h1>'
-    });
     updateResults();
 });
 
