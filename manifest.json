@@ -392,6 +392,7 @@
             ],
             "js": [
                 "js/jquery.js",
+                "js/jquery.atooltip.pack.js",
                 "js/filterbubble.js"
             ],
             "css": [

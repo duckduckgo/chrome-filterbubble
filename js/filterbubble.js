@@ -161,9 +161,11 @@ function updateResults() {
             // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
+
+                if (cleanResultsData[iter] !== undefined)
+                    $(this).after(generateGoogleResult(cleanResultsData[iter]));
                 
                 // adds generated google result
-                $(this).after(generateGoogleResult(cleanResultsData[iter]));
                 //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
                 //console.log(generateGoogleResult(cleanResultsData[iter]));
 
@@ -183,11 +185,15 @@ window.addEventListener("hashchange", updateResults, false);
 
 $(document).ready(function(){
     //console.log(results);
+    $('.ddg_filterbubble_box').aToolTip({
+        tipContent: 'asd <h1>aaa</h1>'
+    });
     updateResults();
 });
 
 
 function generateGoogleResult(r) {
+    if (r === undefined) return;
     var span = $('<div>')
         .addClass('ddg_filterbubble_box')
         .addClass('ddg_filterbubble_box_removed')
