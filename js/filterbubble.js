@@ -38,7 +38,7 @@ function hoverize(el) {
 
     var offset = $(el).offset();
 
-    tip.css({left: offset.left - 130, top: offset.top - 200})
+    tip.css({left: offset.left - 117, top: offset.top - 193})
         .show();
 
 }

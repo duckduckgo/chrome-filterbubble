@@ -68,12 +68,12 @@
 #ddg_filterbubble_tip:after {
     content: "";
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 100%;
-    border-left: 20px solid blue;
+    border-left: 10px solid blue;
     border-left-color: inherit; 
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent; 
+    border-top: 10px solid #fafafa;
+    border-bottom: 10px solid #fafafa; 
 }
 
 
