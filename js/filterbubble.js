@@ -37,7 +37,6 @@ function hoverize(el) {
     $(el).addClass(lclass + '-hover');
 
     var offset = $(el).offset();
-    console.log(lclass);
 
     switch(lclass) {
         case 'ddg_filterbubble_box_removed':
