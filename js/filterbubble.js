@@ -38,7 +38,13 @@ function hoverize(el) {
 
     var offset = $(el).offset();
 
-    tip.css({left: offset.left - 117, top: offset.top - 193})
+    switch(lclass) {
+        case 'ddg_filterbubble_box_removed':
+            tip.find('ddg_filterbubble_tip_cont')
+               .html('Result <strong>removed</strong> based on your Google profile.');
+    }
+
+    tip.css({left: offset.left - 127, top: offset.top - 193})
         .mouseover(function(){
             clearTimeout(timeouter);
         })
@@ -220,7 +226,10 @@ function updateResults() {
 }
 
 
-var tip = $('<div>').attr('id', 'ddg_filterbubble_tip');
+var tip = $('<div>').attr('id', 'ddg_filterbubble_tip')
+            .append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
+            .append($('<div>').attr('class', 'whitened')
+                              .html("Downgraded<br>Upgraded<br>Inserted<br>Removed<br>"));
 var timeouter = {};
 window.addEventListener("hashchange", updateResults, false);
 
