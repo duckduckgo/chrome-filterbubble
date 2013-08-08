@@ -25,11 +25,11 @@
 }
 
 .ddg_filterbubble_box_move-up {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/up.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-up_normal.png');
 }
 
 .ddg_filterbubble_box_move-down {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/down.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-down_normal.png');
 }
 
 .ddg_filterbubble_active {

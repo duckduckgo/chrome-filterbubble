@@ -405,8 +405,8 @@
   "web_accessible_resources": [
       "img/button-1-bg.png",
       "img/button-2-bg.png",
-      "img/up.png",
-      "img/down.png",
+      "img/arrow-up_normal.png",
+      "img/arrow-down_normal.png",
       "img/icon-inserted_normal.png",
       "img/icon-removed_normal.png"
 
