@@ -35,6 +35,12 @@ function hoverize(el) {
     var lclass = classes[classes.length - 1];
     $(el).removeClass(lclass);
     $(el).addClass(lclass + '-hover');
+
+    var offset = $(el).offset();
+
+    tip.css({left: offset.left - 130, top: offset.top - 200})
+        .show();
+
 }
 
 function unhoverize(el) {
@@ -42,6 +48,8 @@ function unhoverize(el) {
     var lclass = classes[classes.length - 1];
     $(el).removeClass(lclass);
     $(el).addClass(lclass.replace('-hover', ''));
+
+    tip.hide();
 }
 
 
@@ -136,8 +144,8 @@ function updateResults() {
             });
 
         
-        $('#rcnt').append(tip);
-
+        if ($('#ddg_filterbubble_tip').size() < 1)
+            $('#rcnt').append(tip);
 
         if (index != -1) {
             if (index != iter) {
