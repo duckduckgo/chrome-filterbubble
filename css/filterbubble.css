@@ -32,6 +32,22 @@
     background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-down_normal.png');
 }
 
+.ddg_filterbubble_box_added-hover {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/icon-inserted_hover.png');
+}
+
+.ddg_filterbubble_box_removed-hover {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/icon-removed_hover.png');
+}
+
+.ddg_filterbubble_box_move-up-hover {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-up_hover.png');
+}
+
+.ddg_filterbubble_box_move-down-hover {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-down_hover.png');
+}
+
 .ddg_filterbubble_active {
     background-color: #e64d14;
 }

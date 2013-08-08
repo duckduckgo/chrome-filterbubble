@@ -30,15 +30,32 @@ function firstPage() {
     return true; 
 }
 
+function hoverize(el) {
+    var classes = $(el).attr('class').split(/\s/);
+    var lclass = classes[classes.length - 1];
+    $(el).removeClass(lclass);
+    $(el).addClass(lclass + '-hover');
+}
+
+function unhoverize(el) {
+    var classes = $(el).attr('class').split(/\s/);
+    var lclass = classes[classes.length - 1];
+    $(el).removeClass(lclass);
+    $(el).addClass(lclass.replace('-hover', ''));
+}
+
+
+
+
 function updateResults() {
     var query = getQueryFromURL();
 
     console.log(firstPage());
     if (!firstPage())
         return;
-    
+
     getAOLResults(query, function(r){
-        
+
         var cleanResults = [];
         var cleanResultsData = [];
         var dirtyResults = [];
@@ -52,7 +69,7 @@ function updateResults() {
             if ($(this).find('a').eq(0).hasClass('sitelink')) {
                 return;
             }
-            
+
             // ignoring news boxes
             if ($(this).find('div').eq(0).hasClass('univ_news')) {
                 return;
@@ -86,15 +103,15 @@ function updateResults() {
             var url = $(this).find('a').attr('href');
 
             if (url.indexOf('http') !== -1)
-                dirtyResults.push(url);
+            dirtyResults.push(url);
         });
-        
-      //r.children().filter('.result').each(function(){
-      //    var url = $(this).find('a').attr('href');
-      //    var matches = url.match(/&s_cu=(.*?)&/);
 
-      //    cleanResults.push(decodeURIComponent(matches[1]));
-      //});
+        //r.children().filter('.result').each(function(){
+        //    var url = $(this).find('a').attr('href');
+        //    var matches = url.match(/&s_cu=(.*?)&/);
+
+        //    cleanResults.push(decodeURIComponent(matches[1]));
+        //});
 
         console.log(cleanResults);
         console.log(dirtyResults);
@@ -104,74 +121,74 @@ function updateResults() {
         results.each(function(){
             var url = $(this).find('a').attr('href');
             if (url.indexOf('http') === -1)
-                return;
+            return;
 
-            var index = cleanResults.indexOf(url);
-            var span = $('<div>').addClass('ddg_filterbubble_box')
-                .click(function(){
-                      chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
-                                    function(){});
-                      return false;
-                }).mouseover(function(){
-                    $(this).addClass('ddg_filterbubble_active');
-                }).mouseout(function(){
-                    $(this).removeClass('ddg_filterbubble_active');
-                });
+        var index = cleanResults.indexOf(url);
+        var span = $('<div>').addClass('ddg_filterbubble_box')
+            .click(function(){
+                chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
+                    function(){});
+                return false;
+            }).mouseover(function(){
+                hoverize(this);
+            }).mouseout(function(){
+                unhoverize(this);
+            });
 
-            if (index != -1) {
-                if (index != iter) {
-                    //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
-                    if (index > iter) {
-                        var num = (index - iter);
-                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
-                            .attr('title', 'Link moved up ' + num + 
-                                            ' spot' + (num > 1 ? 's':'') + 
-                                            EXTENSION_TEXT);
-                        span.addClass('ddg_filterbubble_box_move-up');
-                    } else {
-                        var num = (iter - index);
-                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +num)
-                            .attr('title', 'Link moved down ' + num + 
-                                            ' spot' + (num > 1 ? 's':'') + 
-                                            EXTENSION_TEXT);
-                        span.addClass('ddg_filterbubble_box_move-down');
-                    } 
+        if (index != -1) {
+            if (index != iter) {
+                //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
+                if (index > iter) {
+                    var num = (index - iter);
+                    span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
+                        .attr('title', 'Link moved up ' + num + 
+                                ' spot' + (num > 1 ? 's':'') + 
+                                EXTENSION_TEXT);
+                    span.addClass('ddg_filterbubble_box_move-up');
                 } else {
-                    span.removeClass('ddg_filterbubble_box');
-                }
-                $(this).find('h3').prepend(span);
+                    var num = (iter - index);
+                    span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +num)
+                        .attr('title', 'Link moved down ' + num + 
+                                ' spot' + (num > 1 ? 's':'') + 
+                                EXTENSION_TEXT);
+                    span.addClass('ddg_filterbubble_box_move-down');
+                } 
             } else {
-              //var div = $('<div>').css({
-              //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
-              //            'height': '16px',
-              //            'width': '16px',
-              //            'float': 'left',
-              //            'background-repeat': 'no-repeat',
-              //            'padding-right': '2px'
-              //            });
-              //$(this).find('h3').prepend(div);
-
-              span.attr('title', 'Link was added' + EXTENSION_TEXT)
-                  .addClass('ddg_filterbubble_box_added');
-
-              $(this).find('h3').prepend(span);
-
+                span.removeClass('ddg_filterbubble_box');
             }
+            $(this).find('h3').prepend(span);
+        } else {
+            //var div = $('<div>').css({
+            //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
+            //            'height': '16px',
+            //            'width': '16px',
+            //            'float': 'left',
+            //            'background-repeat': 'no-repeat',
+            //            'padding-right': '2px'
+            //            });
+            //$(this).find('h3').prepend(div);
 
-            // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
+            span.attr('title', 'Link was added' + EXTENSION_TEXT)
+                .addClass('ddg_filterbubble_box_added');
 
-            if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
+            $(this).find('h3').prepend(span);
 
-                if (cleanResultsData[iter] !== undefined)
-                    $(this).after(generateGoogleResult(cleanResultsData[iter]));
-                
-                // adds generated google result
-                //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
-                //console.log(generateGoogleResult(cleanResultsData[iter]));
+        }
 
-            }
+        // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
-            iter += 1;
+        if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
+
+            if (cleanResultsData[iter] !== undefined)
+                $(this).after(generateGoogleResult(cleanResultsData[iter]));
+
+            // adds generated google result
+            //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
+            //console.log(generateGoogleResult(cleanResultsData[iter]));
+
+        }
+
+        iter += 1;
 
 
 
@@ -200,23 +217,23 @@ function generateGoogleResult(r) {
         .attr('title', 'Link was missing' + EXTENSION_TEXT)
         .click(function(){
             chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
-                            function(){});
+                function(){});
             return false;
         }).mouseover(function(){
-            $(this).addClass('ddg_filterbubble_active');
+            hoverize(this);
         }).mouseout(function(){
-            $(this).removeClass('ddg_filterbubble_active');
+            unhoverize(this);
         });
- 
+
     var resultDiv = $('<div>').attr('class', 'vsc');
     resultDiv.append($('<h3>').prepend(span).append(
-                        $('<a>').attr({href: r.url, class: 'l'})
-                                .html(r.title)));
+                $('<a>').attr({href: r.url, class: 'l'})
+                .html(r.title)));
     resultDiv.append($('<div>').attr('class', 's').append(
-                        $('<div>').attr('class', 'f kv').append(
-                            $('<cite>').html(r.url))).append(
-                        $('<span>').attr('class', 'st').html(r.desc))
-                    );
+                $('<div>').attr('class', 'f kv').append(
+                    $('<cite>').html(r.url))).append(
+                $('<span>').attr('class', 'st').html(r.desc))
+            );
     return $('<li>').attr('class', 'g').append(resultDiv);
 }
 

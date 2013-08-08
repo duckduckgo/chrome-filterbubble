@@ -408,7 +408,12 @@
       "img/arrow-up_normal.png",
       "img/arrow-down_normal.png",
       "img/icon-inserted_normal.png",
-      "img/icon-removed_normal.png"
+      "img/icon-removed_normal.png",
+      "img/arrow-up_hover.png",
+      "img/arrow-down_hover.png",
+      "img/icon-inserted_hover.png",
+      "img/icon-removed_hover.png"
+
 
   ]
 }
