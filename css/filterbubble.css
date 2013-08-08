@@ -101,6 +101,11 @@
     margin: 1px 0;
 }
 
+#ddg_filterbubble_tip .whitened a {
+    text-decoration: none;
+    color: #558ee1;
+}
+
 #ddg_filterbubble_tip img {
     vertical-align: text-bottom;
     padding-right: 4px;
@@ -115,3 +120,4 @@
 #ddg_filterbubble_tip_cont strong {
     color: #e64d14;
 }
+
