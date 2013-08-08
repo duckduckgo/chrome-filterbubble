@@ -135,6 +135,10 @@ function updateResults() {
                 unhoverize(this);
             });
 
+        
+        $('#rcnt').append(tip);
+
+
         if (index != -1) {
             if (index != iter) {
                 //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
@@ -197,15 +201,16 @@ function updateResults() {
 
 }
 
-function createTip(type, text) {
-    var tip = $('<div>').addClass('ddg_filterbubble_tip');
-}
+
+var tip = $('<div>').attr('id', 'ddg_filterbubble_tip');
 
 window.addEventListener("hashchange", updateResults, false);
 
 $(document).ready(function(){
     //console.log(results);
+    
     updateResults();
+
 });
 
 
