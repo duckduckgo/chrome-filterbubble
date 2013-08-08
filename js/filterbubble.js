@@ -39,7 +39,15 @@ function hoverize(el) {
     var offset = $(el).offset();
 
     tip.css({left: offset.left - 117, top: offset.top - 193})
-        .show();
+        .mouseover(function(){
+            clearTimeout(timeouter);
+        })
+        .mouseout(function(){
+            timeouter = setTimeout(function(){
+                tip.fadeOut();
+            }, 1500);
+        })
+        .fadeIn();
 
 }
 
@@ -49,7 +57,9 @@ function unhoverize(el) {
     $(el).removeClass(lclass);
     $(el).addClass(lclass.replace('-hover', ''));
 
-    tip.hide();
+    timeouter = setTimeout(function(){
+        tip.fadeOut();
+    }, 1500);
 }
 
 
@@ -211,7 +221,7 @@ function updateResults() {
 
 
 var tip = $('<div>').attr('id', 'ddg_filterbubble_tip');
-
+var timeouter = {};
 window.addEventListener("hashchange", updateResults, false);
 
 $(document).ready(function(){
