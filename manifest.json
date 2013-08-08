@@ -392,7 +392,6 @@
             ],
             "js": [
                 "js/jquery.js",
-                "js/jquery.atooltip.pack.js",
                 "js/filterbubble.js"
             ],
             "css": [
@@ -408,8 +407,8 @@
       "img/button-2-bg.png",
       "img/up.png",
       "img/down.png",
-      "img/plus.png",
-      "img/minus.png"
+      "img/icon-inserted_normal.png",
+      "img/icon-removed_normal.png"
 
   ]
 }

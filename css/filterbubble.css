@@ -17,11 +17,11 @@
 }
 
 .ddg_filterbubble_box_added {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/plus.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/icon-inserted_normal.png');
 }
 
 .ddg_filterbubble_box_removed {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/minus.png');
+    background: url('chrome-extension://__MSG_@@extension_id__/img/icon-removed_normal.png');
 }
 
 .ddg_filterbubble_box_move-up {
