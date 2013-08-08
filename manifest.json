@@ -409,11 +409,13 @@
       "img/arrow-down_normal.png",
       "img/icon-inserted_normal.png",
       "img/icon-removed_normal.png",
+      "img/legeng_removed.png",
+      "img/legeng_inserted.png",
+      "img/legeng_pushed-up.png",
+      "img/legeng_pushed-down.png",
       "img/arrow-up_hover.png",
       "img/arrow-down_hover.png",
       "img/icon-inserted_hover.png",
       "img/icon-removed_hover.png"
-
-
   ]
 }
