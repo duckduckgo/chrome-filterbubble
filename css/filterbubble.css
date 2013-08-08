@@ -103,7 +103,9 @@
 
 #ddg_filterbubble_tip .whitened a {
     text-decoration: none;
-    color: #558ee1;
+    /*color: #558ee1;*/
+    color: #2262d7;
+    padding-top: 5px;
 }
 
 #ddg_filterbubble_tip img {
