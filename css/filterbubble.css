@@ -42,10 +42,12 @@
 
 .ddg_filterbubble_box_move-up-hover {
     background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-up_hover.png');
+    color: #fff !important;
 }
 
 .ddg_filterbubble_box_move-down-hover {
     background: url('chrome-extension://__MSG_@@extension_id__/img/arrow-down_hover.png');
+    color: #fff !important;
 }
 
 .ddg_filterbubble_active {
