@@ -89,14 +89,26 @@
 }
 
 #ddg_filterbubble_tip .whitened{
-    padding: 10px;
+    padding: 8px;
     margin: 0 auto;
     color: #888;
+    line-height: 1.6;
+}
+
+#ddg_filterbubble_tip .whitened p {
+    line-height: 1.6;
+    padding: 0px;
+    margin: 1px 0;
+}
+
+#ddg_filterbubble_tip img {
+    vertical-align: text-bottom;
+    padding-right: 4px;
 }
 
 #ddg_filterbubble_tip_cont {
     color: #000;
-    padding: 10px;
+    padding: 8px;
     margin: 0 auto;
 }
 

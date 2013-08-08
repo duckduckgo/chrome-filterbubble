@@ -245,10 +245,10 @@ function updateResults() {
 var tip = $('<div>').attr('id', 'ddg_filterbubble_tip')
             .append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
             .append($('<div>').attr('class', 'whitened')
-                              .html("<img src=" + chrome.extension.getURL('/img/legeng_pushed-down.png')+">Downgraded<br>" +
-                                  "<img src=" + chrome.extension.getURL('/img/legeng_pushed-up.png')+">Upgraded<br>" +
-                                  "<img src=" + chrome.extension.getURL('/img/legeng_inserted.png')+">Inserted<br>" +
-                                  "<img src=" + chrome.extension.getURL('/img/legeng_removed.png')+">Removed<br>"));
+                              .html("<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-down.png')+">Downgraded</p>" +
+                                  "<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-up.png')+">Upgraded</p>" +
+                                  "<p><img src=" + chrome.extension.getURL('/img/legeng_inserted.png')+">Inserted</p>" +
+                                  "<p><img src=" + chrome.extension.getURL('/img/legeng_removed.png')+">Removed</p><br><a href='https://dontbubble.us'>Learn more</a>"));
 var timeouter = {};
 window.addEventListener("hashchange", updateResults, false);
 
