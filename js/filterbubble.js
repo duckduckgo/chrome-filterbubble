@@ -37,12 +37,28 @@ function hoverize(el) {
     $(el).addClass(lclass + '-hover');
 
     var offset = $(el).offset();
+    console.log(lclass);
 
     switch(lclass) {
         case 'ddg_filterbubble_box_removed':
-            tip.find('ddg_filterbubble_tip_cont')
+            tip.find('#ddg_filterbubble_tip_cont')
                .html('Result <strong>removed</strong> based on your Google profile.');
+            break;
+        case 'ddg_filterbubble_box_added':
+            tip.find('#ddg_filterbubble_tip_cont')
+               .html('Result <strong>inserted</strong> based on your Google profile.');
+            break;
+        case 'ddg_filterbubble_box_move-up':
+            tip.find('#ddg_filterbubble_tip_cont')
+               .html('Result <strong>pushed up</strong> based on your Google profile.');
+            break;
+        case 'ddg_filterbubble_box_move-down':
+            tip.find('#ddg_filterbubble_tip_cont')
+               .html('Result <strong>pushed down</strong> based on your Google profile.');
+            break;
+ 
     }
+    clearTimeout(timeouter);
 
     tip.css({left: offset.left - 127, top: offset.top - 193})
         .mouseover(function(){
@@ -229,7 +245,10 @@ function updateResults() {
 var tip = $('<div>').attr('id', 'ddg_filterbubble_tip')
             .append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
             .append($('<div>').attr('class', 'whitened')
-                              .html("Downgraded<br>Upgraded<br>Inserted<br>Removed<br>"));
+                              .html("<img src=" + chrome.extension.getURL('/img/legeng_pushed-down.png')+">Downgraded<br>" +
+                                  "<img src=" + chrome.extension.getURL('/img/legeng_pushed-up.png')+">Upgraded<br>" +
+                                  "<img src=" + chrome.extension.getURL('/img/legeng_inserted.png')+">Inserted<br>" +
+                                  "<img src=" + chrome.extension.getURL('/img/legeng_removed.png')+">Removed<br>"));
 var timeouter = {};
 window.addEventListener("hashchange", updateResults, false);
 
