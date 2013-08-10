@@ -59,7 +59,7 @@ function hoverize(el) {
     }
     clearTimeout(timeouter);
 
-    tip.css({left: offset.left - 127, top: offset.top - 163})
+    tip.css({left: offset.left - 127, top: offset.top - 193})
         .mouseover(function(){
             clearTimeout(timeouter);
         })
