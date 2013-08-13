@@ -6,6 +6,7 @@
     font-family: 'Helvetica Regular' !important;
     font-size: 7pt;
     line-height: 18px;
+    cursor: pointer;
 }
 
 .ddg_filterbubble_box_move {
