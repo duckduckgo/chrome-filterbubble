@@ -141,8 +141,12 @@ function updateResults() {
         results.each(function(){
             var url = $(this).find('a').attr('href');
 
-            if (url.indexOf('http') !== -1)
-                dirtyResults.push(url);
+            if (url.indexOf('http') !== -1) {
+                // skiping In Depth articles
+                if ($(this).find(".rd-pub").length == 0) {
+                    dirtyResults.push(url);
+                }
+            }
         });
 
         //r.children().filter('.result').each(function(){
@@ -160,7 +164,7 @@ function updateResults() {
         results.each(function(){
             var url = $(this).find('a').attr('href');
             if (url.indexOf('http') === -1)
-            return;
+                return;
 
         var index = cleanResults.indexOf(url);
         var span = $('<div>').addClass('ddg_filterbubble_box')
