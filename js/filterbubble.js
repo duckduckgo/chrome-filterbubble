@@ -142,7 +142,7 @@ function updateResults() {
             var url = $(this).find('a').attr('href');
 
             if (url.indexOf('http') !== -1)
-            dirtyResults.push(url);
+                dirtyResults.push(url);
         });
 
         //r.children().filter('.result').each(function(){
