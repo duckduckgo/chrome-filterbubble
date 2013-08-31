@@ -141,11 +141,9 @@ function updateResults() {
         results.each(function(){
             var url = $(this).find('a').attr('href');
 
-            if (url.indexOf('http') !== -1) {
-                // skiping In Depth articles
-                if ($(this).find(".rd-pub").length == 0) {
-                    dirtyResults.push(url);
-                }
+            // skiping In Depth articles
+            if ($(this).find(".rd-pub").length == 0) {
+                dirtyResults.push(url);
             }
         });
 
@@ -166,76 +164,82 @@ function updateResults() {
             if (url.indexOf('http') === -1)
                 return;
 
-        var index = cleanResults.indexOf(url);
-        var span = $('<div>').addClass('ddg_filterbubble_box')
-            .click(function(){
-                chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
-                    function(){});
-                return false;
-            }).mouseover(function(){
-                hoverize(this);
-            }).mouseout(function(){
-                unhoverize(this);
-            });
-
-        
-        if ($('#ddg_filterbubble_tip').size() < 1)
-            $('#rcnt').append(tip);
-
-        if (index != -1) {
-            if (index != iter) {
-                //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
-                if (index > iter) {
-                    var num = (index - iter);
-                    span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
-                        .attr('title', 'Link moved up ' + num + 
-                                ' spot' + (num > 1 ? 's':'') + 
-                                EXTENSION_TEXT);
-                    span.addClass('ddg_filterbubble_box_move-up');
-                } else {
-                    var num = (iter - index);
-                    span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +num)
-                        .attr('title', 'Link moved down ' + num + 
-                                ' spot' + (num > 1 ? 's':'') + 
-                                EXTENSION_TEXT);
-                    span.addClass('ddg_filterbubble_box_move-down');
-                } 
-            } else {
-                span.removeClass('ddg_filterbubble_box');
+            // skiping In Depth articles
+            if ($(this).find(".rd-pub").length !== 0) {
+                return;
             }
-            $(this).find('h3').prepend(span);
-        } else {
-            //var div = $('<div>').css({
-            //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
-            //            'height': '16px',
-            //            'width': '16px',
-            //            'float': 'left',
-            //            'background-repeat': 'no-repeat',
-            //            'padding-right': '2px'
-            //            });
-            //$(this).find('h3').prepend(div);
+ 
 
-            span.attr('title', 'Link was added' + EXTENSION_TEXT)
-                .addClass('ddg_filterbubble_box_added');
+            var index = cleanResults.indexOf(url);
+            var span = $('<div>').addClass('ddg_filterbubble_box')
+                .click(function(){
+                    chrome.runtime.sendMessage({newtab: 'http://dontbubble.us'},
+                        function(){});
+                    return false;
+                }).mouseover(function(){
+                    hoverize(this);
+                }).mouseout(function(){
+                    unhoverize(this);
+                });
 
-            $(this).find('h3').prepend(span);
 
-        }
+            if ($('#ddg_filterbubble_tip').size() < 1)
+                $('#rcnt').append(tip);
 
-        // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
+            if (index != -1) {
+                if (index != iter) {
+                    //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
+                    if (index > iter) {
+                        var num = (index - iter);
+                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
+                            .attr('title', 'Link moved up ' + num + 
+                                    ' spot' + (num > 1 ? 's':'') + 
+                                    EXTENSION_TEXT);
+                        span.addClass('ddg_filterbubble_box_move-up');
+                    } else {
+                        var num = (iter - index);
+                        span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +num)
+                            .attr('title', 'Link moved down ' + num + 
+                                    ' spot' + (num > 1 ? 's':'') + 
+                                    EXTENSION_TEXT);
+                        span.addClass('ddg_filterbubble_box_move-down');
+                    } 
+                } else {
+                    span.removeClass('ddg_filterbubble_box');
+                }
+                $(this).find('h3').prepend(span);
+            } else {
+                //var div = $('<div>').css({
+                //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
+                //            'height': '16px',
+                //            'width': '16px',
+                //            'float': 'left',
+                //            'background-repeat': 'no-repeat',
+                //            'padding-right': '2px'
+                //            });
+                //$(this).find('h3').prepend(div);
 
-        if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
+                span.attr('title', 'Link was added' + EXTENSION_TEXT)
+                    .addClass('ddg_filterbubble_box_added');
 
-            if (cleanResultsData[iter] !== undefined)
-                $(this).after(generateGoogleResult(cleanResultsData[iter]));
+                $(this).find('h3').prepend(span);
 
-            // adds generated google result
-            //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
-            //console.log(generateGoogleResult(cleanResultsData[iter]));
+            }
 
-        }
+            // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
-        iter += 1;
+            if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
+
+                if (cleanResultsData[iter] !== undefined)
+                    $(this).after(generateGoogleResult(cleanResultsData[iter]));
+
+                // adds generated google result
+                //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
+                //console.log(generateGoogleResult(cleanResultsData[iter]));
+
+            }
+
+            iter += 1;
 
 
 
@@ -246,18 +250,18 @@ function updateResults() {
 
 
 var tip = $('<div>').attr('id', 'ddg_filterbubble_tip')
-            .append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
-            .append($('<div>').attr('class', 'whitened')
-                              .html("<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-down.png')+">Downgraded</p>" +
-                                  "<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-up.png')+">Upgraded</p>" +
-                                  "<p><img src=" + chrome.extension.getURL('/img/legeng_inserted.png')+">Inserted</p>" +
-                                  "<p><img src=" + chrome.extension.getURL('/img/legeng_removed.png')+">Removed</p><a href='http://dontbubble.us'>Learn more</a>"));
+.append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
+.append($('<div>').attr('class', 'whitened')
+        .html("<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-down.png')+">Downgraded</p>" +
+            "<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-up.png')+">Upgraded</p>" +
+            "<p><img src=" + chrome.extension.getURL('/img/legeng_inserted.png')+">Inserted</p>" +
+            "<p><img src=" + chrome.extension.getURL('/img/legeng_removed.png')+">Removed</p><a href='http://dontbubble.us'>Learn more</a>"));
 var timeouter = {};
 window.addEventListener("hashchange", updateResults, false);
 
 $(document).ready(function(){
     //console.log(results);
-    
+
     updateResults();
 
 });
