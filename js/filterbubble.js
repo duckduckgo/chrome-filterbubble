@@ -300,20 +300,19 @@ function getAOLResults(query, callback) {
     //req.open('GET', 'http://search.aol.com/aol/search?enabled_terms=&count_override=200&s_it=comsearch51&q=' + encodeURIComponent(query), true);
     var url = 'http://preview.search.aol.com/aol/search?enabled_terms=&s_it=comsearch51&q=' + encodeURIComponent(query);
     console.log(url);
-    req.open('GET', url, true);
+    //req.open('GET', url, true);
 
-    req.onreadystatechange = function(data) {
-        if (req.readyState != 4)  { return; } 
-        console.log('response:', req.responseText.length);
-        console.log('response:', req.responseText)
-        var r = $('div', req.responseText);
+    $.get(url, function(data){
+        console.log(data) 
+        console.log('response:', data);
+        console.log('response:', data)
+        var r = $('div', data);
 
         r = r.find('.MSL > ul > li');
         console.log(r);
         callback(r);
-    }
-
-    req.send(null);
+ 
+    });
 }
 
 
