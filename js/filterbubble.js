@@ -59,6 +59,7 @@ function hoverize(el) {
     }
     clearTimeout(timeouter);
 
+    // encrypted or not -- padded or not?
     var ty = 193;
     if (/encrypted/.test(window.location.href)) ty = 163
 
