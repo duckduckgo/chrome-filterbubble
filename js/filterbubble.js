@@ -59,7 +59,10 @@ function hoverize(el) {
     }
     clearTimeout(timeouter);
 
-    tip.css({left: offset.left - 127, top: offset.top - 163})
+    var ty = 193;
+    if (/encrypted/.test(window.location.href)) ty = 163
+
+    tip.css({left: offset.left - 127, top: offset.top - ty})
         .mouseover(function(){
             clearTimeout(timeouter);
         })
