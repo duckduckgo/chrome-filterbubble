@@ -305,10 +305,11 @@ function getAOLResults(query, callback) {
     req.onreadystatechange = function(data) {
         if (req.readyState != 4)  { return; } 
         console.log('response:', req.responseText.length);
+        console.log('response:', req.responseText)
         var r = $('div', req.responseText);
 
         r = r.find('.MSL > ul > li');
-        //console.log(r);
+        console.log(r);
         callback(r);
     }
 
