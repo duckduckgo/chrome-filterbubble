@@ -10,6 +10,7 @@
   },
   "permissions": [
     "http://preview.search.aol.com/*",
+    "http://*.aol.com/*",
     "http://*.aolcdn.com/*"
   ],
   "content_scripts": [
