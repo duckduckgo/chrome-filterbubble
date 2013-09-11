@@ -288,6 +288,7 @@ function generateGoogleResult(r) {
         });
 
     var URL = r.url;
+    URL = URL.replace(/https?:\/\//,"");
     if (URL.length > 76) {
         URL = URL.slice(0, 76) + "..."; 
     }
