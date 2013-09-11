@@ -287,13 +287,18 @@ function generateGoogleResult(r) {
             unhoverize(this);
         });
 
+    var URL = r.url;
+    if (URL.length > 76) {
+        URL = URL.slice(0, 76) + "..."; 
+    }
+
     var resultDiv = $('<div>').attr('class', 'vsc');
     resultDiv.append($('<h3>').prepend(span).append(
                 $('<a>').attr({href: r.url, class: 'l'})
                 .html(r.title)));
     resultDiv.append($('<div>').attr('class', 's').append(
                 $('<div>').attr('class', 'f kv').append(
-                    $('<cite>').html(r.url))).append(
+                    $('<cite>').html(URL))).append(
                 $('<span>').attr('class', 'st').html(r.desc))
             );
     return $('<li>').attr('class', 'g').append(resultDiv);
