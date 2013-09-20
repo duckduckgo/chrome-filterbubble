@@ -9,7 +9,7 @@
       "128": "img/icon_128.png"
   },
   "permissions": [
-    "http://preview.search.aol.com/*",
+    "https://mrshu.duckduckgo.com/aol/*",
     "http://*.aol.com/*",
     "http://*.aolcdn.com/*"
   ],
