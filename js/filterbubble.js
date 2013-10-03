@@ -60,8 +60,7 @@ function hoverize(el) {
     clearTimeout(timeouter);
 
     // encrypted or not -- padded or not?
-    var ty = 193;
-    if (/encrypted/.test(window.location.href)) ty = 163
+    var ty = 178;
 
     tip.css({left: offset.left - 127, top: offset.top - ty})
         .mouseover(function(){
