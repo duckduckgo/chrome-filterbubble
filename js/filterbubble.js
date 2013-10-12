@@ -62,8 +62,9 @@ function hoverize(el) {
     // encrypted or not -- padded or not?
     var ty = 178;
 
-    tip.css({left: offset.left - 127, top: offset.top - ty})
-        .mouseover(function(){
+    console.log($(el).prev());
+
+    tip.mouseover(function(){
             clearTimeout(timeouter);
         })
         .mouseout(function(){
@@ -149,9 +150,8 @@ function updateResults() {
                 dirtyResults.push(url);
             }
         });
-
-        //r.children().filter('.result').each(function(){
-        //    var url = $(this).find('a').attr('href');
+        //r.children().filter('.result').each(function(){ 
+        ////    var url = $(this).find('a').attr('href');
         //    var matches = url.match(/&s_cu=(.*?)&/);
 
         //    cleanResults.push(decodeURIComponent(matches[1]));
@@ -172,7 +172,6 @@ function updateResults() {
                 return;
             }
  
-
             var index = cleanResults.indexOf(url);
             var span = $('<div>').addClass('ddg_filterbubble_box')
                 .click(function(){
@@ -210,6 +209,8 @@ function updateResults() {
                 } else {
                     span.removeClass('ddg_filterbubble_box');
                 }
+                var container = $('<div>').addClass('ddg_modal_container');
+                $(this).find('h3').prepend(container);
                 $(this).find('h3').prepend(span);
             } else {
                 //var div = $('<div>').css({

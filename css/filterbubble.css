@@ -124,7 +124,7 @@
     color: #e64d14;
 }
 
-#ddg_modal_container {
+.ddg_modal_container {
     position: relative;
     display: inline-block;
     width: 1px;
