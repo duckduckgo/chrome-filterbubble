@@ -62,7 +62,7 @@ function hoverize(el) {
     // encrypted or not -- padded or not?
     var ty = 178;
 
-    console.log($(el).prev());
+    console.log($($(el).prev()));
 
     tip.mouseover(function(){
             clearTimeout(timeouter);
@@ -188,6 +188,9 @@ function updateResults() {
             if ($('#ddg_filterbubble_tip').size() < 1)
                 $('#rcnt').append(tip);
 
+            var container = $('<div>').addClass('ddg_modal_container');
+            $(this).find('h3').prepend(container);
+
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
@@ -209,9 +212,7 @@ function updateResults() {
                 } else {
                     span.removeClass('ddg_filterbubble_box');
                 }
-                var container = $('<div>').addClass('ddg_modal_container');
-                $(this).find('h3').prepend(container);
-                $(this).find('h3').prepend(span);
+               $(this).find('h3').prepend(span);
             } else {
                 //var div = $('<div>').css({
                 //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
