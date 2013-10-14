@@ -72,7 +72,8 @@ function hoverize(el) {
                 tip.fadeOut();
             }, 1500);
         })
-        .fadeIn();
+        .prependTo($($(el).prev()));
+      //.fadeIn();
 
 }
 
@@ -188,9 +189,6 @@ function updateResults() {
             if ($('#ddg_filterbubble_tip').size() < 1)
                 $('#rcnt').append(tip);
 
-            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
-            $(this).find('h3').prepend(container);
-
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
@@ -233,6 +231,9 @@ function updateResults() {
 
             // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
+            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
+            $(this).find('h3').prepend(container);
+
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
 
                 if (cleanResultsData[iter] !== undefined)
@@ -255,8 +256,8 @@ function updateResults() {
 
 
 var tip = $('<div>').attr('id', 'ddg_filterbubble_tip')
-.append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
-.append($('<div>').attr('class', 'whitened')
+        .append($('<div>').attr('id', 'ddg_filterbubble_tip_cont'))
+        .append($('<div>').attr('class', 'whitened')
         .html("<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-down.png')+">Downgraded</p>" +
             "<p><img src=" + chrome.extension.getURL('/img/legeng_pushed-up.png')+">Upgraded</p>" +
             "<p><img src=" + chrome.extension.getURL('/img/legeng_inserted.png')+">Inserted</p>" +
