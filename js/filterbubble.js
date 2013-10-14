@@ -59,10 +59,7 @@ function hoverize(el) {
     }
     clearTimeout(timeouter);
 
-    // encrypted or not -- padded or not?
-    var ty = 178;
-
-    console.log($($(el).prev()));
+    console.log($(el).prev());
 
     tip.mouseover(function(){
             clearTimeout(timeouter);
@@ -72,8 +69,9 @@ function hoverize(el) {
                 tip.fadeOut();
             }, 1500);
         })
-        .prependTo($($(el).prev()));
-      //.fadeIn();
+        .fadeIn();
+
+    tip.appendTo($(el).prev());
 
 }
 
@@ -189,6 +187,7 @@ function updateResults() {
             if ($('#ddg_filterbubble_tip').size() < 1)
                 $('#rcnt').append(tip);
 
+
             if (index != -1) {
                 if (index != iter) {
                     //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
@@ -210,7 +209,9 @@ function updateResults() {
                 } else {
                     span.removeClass('ddg_filterbubble_box');
                 }
-               $(this).find('h3').prepend(span);
+                var container = $('<div>').addClass('ddg_modal_container');
+                $(this).find('h3').prepend(container);
+                $(this).find('h3').prepend(span);
             } else {
                 //var div = $('<div>').css({
                 //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
@@ -231,9 +232,6 @@ function updateResults() {
 
             // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
-            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
-            $(this).find('h3').prepend(container);
-
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
 
                 if (cleanResultsData[iter] !== undefined)
@@ -244,6 +242,10 @@ function updateResults() {
                 //console.log(generateGoogleResult(cleanResultsData[iter]));
 
             }
+
+            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
+            $(this).find('h3').prepend(container);
+
 
             iter += 1;
 

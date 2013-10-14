@@ -63,7 +63,8 @@
     background-color: #fafafa;
     position: absolute;
     z-index: 200000;
-    display: none;
+    top: 0px;
+    left: 0px;
 }
 
 
@@ -126,9 +127,7 @@
 
 .ddg_filterbubble_modal_container {
     position: relative;
-    display: inline-block;
-    width: 1px;
+    width: 0px;
     height: 0px;
     z-index: 2000;
 }
-
