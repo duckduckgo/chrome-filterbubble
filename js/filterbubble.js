@@ -188,7 +188,7 @@ function updateResults() {
             if ($('#ddg_filterbubble_tip').size() < 1)
                 $('#rcnt').append(tip);
 
-            var container = $('<div>').addClass('ddg_modal_container');
+            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
             $(this).find('h3').prepend(container);
 
             if (index != -1) {
