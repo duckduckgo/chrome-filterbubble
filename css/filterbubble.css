@@ -65,6 +65,9 @@
     z-index: 20000000000;
     top: -10px;
     left: -130px;
+
+    font-size: smaller;
+    white-space: normal;
 }
 
 
