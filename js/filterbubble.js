@@ -71,7 +71,7 @@ function hoverize(el) {
         })
         .fadeIn();
 
-    tip.appendTo($(el).prev());
+    tip.appendTo($($(el).parent()).find('.ddg_filterbubble_modal_container'));
 
 }
 
@@ -209,7 +209,7 @@ function updateResults() {
                 } else {
                     span.removeClass('ddg_filterbubble_box');
                 }
-                var container = $('<div>').addClass('ddg_modal_container');
+                var container = $('<div>').addClass('ddg_filterbubble_modal_container');
                 $(this).find('h3').prepend(container);
                 $(this).find('h3').prepend(span);
             } else {
@@ -232,20 +232,28 @@ function updateResults() {
 
             // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
+            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
+
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
 
-                if (cleanResultsData[iter] !== undefined)
-                    $(this).after(generateGoogleResult(cleanResultsData[iter]));
+                if (cleanResultsData[iter] !== undefined) {
+                    var generated_result = generateGoogleResult(cleanResultsData[iter]);
+                    generated_result.find('h3').prepend(container);
+                    generated_result.find('h3').css({'overflow': 'visible'});
+
+                    $(this).after(generated_result);
+                }
 
                 // adds generated google result
                 //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
                 //console.log(generateGoogleResult(cleanResultsData[iter]));
 
+
+            } else {
+                $(this).find('h3').prepend(container);
+                $(this).find('h3').css({'overflow': 'visible'});
             }
 
-            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
-            $(this).find('h3').prepend(container);
-            $(this).find('h3').css({'overflow': 'visible'});
 
             iter += 1;
         });
