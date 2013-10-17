@@ -245,6 +245,7 @@ function updateResults() {
 
             var container = $('<div>').addClass('ddg_filterbubble_modal_container');
             $(this).find('h3').prepend(container);
+            $(this).find('h3').css({'overflow': 'visible'});
 
 
             iter += 1;
