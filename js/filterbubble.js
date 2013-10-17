@@ -247,11 +247,7 @@ function updateResults() {
             $(this).find('h3').prepend(container);
             $(this).find('h3').css({'overflow': 'visible'});
 
-
             iter += 1;
-
-
-
         });
     });
 

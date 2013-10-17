@@ -63,8 +63,8 @@
     background-color: #fafafa;
     position: absolute;
     z-index: 20000000000;
-    top: 0px;
-    left: 0px;
+    top: -10px;
+    left: -130px;
 }
 
 
