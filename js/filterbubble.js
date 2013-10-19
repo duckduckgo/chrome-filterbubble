@@ -31,6 +31,8 @@ function firstPage() {
 }
 
 function hoverize(el) {
+    tip.hide();
+
     var classes = $(el).attr('class').split(/\s/);
     var lclass = classes[classes.length - 1];
     $(el).removeClass(lclass);
@@ -59,7 +61,6 @@ function hoverize(el) {
     }
     clearTimeout(timeouter);
 
-    console.log($(el).prev());
 
     tip.mouseover(function(){
             clearTimeout(timeouter);
