@@ -72,6 +72,14 @@ function hoverize(el) {
         })
         .fadeIn();
 
+
+    // modal container not appended yet
+    if ($($(el).parent()).find('.ddg_filterbubble_modal_container').length == 0) {
+        var container = $('<div>').addClass('ddg_filterbubble_modal_container');
+        $($(el).parent()).prepend(container);
+        $($(el).parent()).css('overflow', 'visible');
+    }
+
     tip.appendTo($($(el).parent()).find('.ddg_filterbubble_modal_container'));
 
 }
@@ -210,8 +218,8 @@ function updateResults() {
                 } else {
                     span.removeClass('ddg_filterbubble_box');
                 }
-                var container = $('<div>').addClass('ddg_filterbubble_modal_container');
-                $(this).find('h3').prepend(container);
+              //var container = $('<div>').addClass('ddg_filterbubble_modal_container');
+              //$(this).find('h3').prepend(container);
                 $(this).find('h3').prepend(span);
             } else {
                 //var div = $('<div>').css({
@@ -227,22 +235,18 @@ function updateResults() {
                 span.attr('title', 'Link was added' + EXTENSION_TEXT)
                     .addClass('ddg_filterbubble_box_added');
 
-                $(this).find('h3').prepend(span);
-
             }
 
             // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
-            var container = $('<div>').addClass('ddg_filterbubble_modal_container');
 
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
 
                 if (cleanResultsData[iter] !== undefined) {
                     var generated_result = generateGoogleResult(cleanResultsData[iter]);
-                    generated_result.find('h3').prepend(container);
-                    generated_result.find('h3').css({'overflow': 'visible'});
-
                     $(this).after(generated_result);
+                    iter += 1;
+                    return;
                 }
 
                 // adds generated google result
@@ -250,11 +254,7 @@ function updateResults() {
                 //console.log(generateGoogleResult(cleanResultsData[iter]));
 
 
-            } else {
-                $(this).find('h3').prepend(container);
-                $(this).find('h3').css({'overflow': 'visible'});
             }
-
 
             iter += 1;
         });
