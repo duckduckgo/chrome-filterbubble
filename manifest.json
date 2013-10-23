@@ -9,9 +9,7 @@
       "128": "img/icon_128.png"
   },
   "permissions": [
-    "https://duckduckgo.com/aol/*",
-    "http://*.aol.com/*",
-    "http://*.aolcdn.com/*"
+    "https://duckduckgo.com/aol/*"
   ],
   "content_scripts": [
   {
