@@ -318,7 +318,7 @@ function generateGoogleResult(r) {
 function getAOLResults(query, callback) {
     var req = new XMLHttpRequest();
     //req.open('GET', 'http://search.aol.com/aol/search?enabled_terms=&count_override=200&s_it=comsearch51&q=' + encodeURIComponent(query), true);
-    var url = 'https://duckduckgo.com/aol/' + encodeURIComponent(query);
+    var url = 'https://duckduckgo.com/dontbubbleus/' + encodeURIComponent(query);
     console.log(url);
     //req.open('GET', url, true);
 
