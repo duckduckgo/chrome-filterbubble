@@ -1,11 +1,4 @@
 
-
-//  var regexp = new RegExp(/^https?:\/\/(www|encrypted)\.google\..*\/.*&sky=ee(.*|)$/);
-//  if (regexp.test(window.location.href)) {
-
-//  }
-//
-
 const EXTENSION_TEXT = ' (due to your filter bubble)';
 
 function getQueryFromURL() {
@@ -113,8 +106,6 @@ function updateResults() {
 
 
         r.each(function(){
-            //console.log($(this).find('a').eq(0));
-            //console.log(this);
 
             // ignoring sub-links
             if ($(this).find('a').eq(0).hasClass('sitelink')) {
@@ -158,12 +149,6 @@ function updateResults() {
                 dirtyResults.push(url);
             }
         });
-        //r.children().filter('.result').each(function(){ 
-        ////    var url = $(this).find('a').attr('href');
-        //    var matches = url.match(/&s_cu=(.*?)&/);
-
-        //    cleanResults.push(decodeURIComponent(matches[1]));
-        //});
 
         console.log(cleanResults);
         console.log(dirtyResults);
@@ -218,26 +203,14 @@ function updateResults() {
                 } else {
                     span.removeClass('ddg_filterbubble_box');
                 }
-              //var container = $('<div>').addClass('ddg_filterbubble_modal_container');
-              //$(this).find('h3').prepend(container);
+
                 $(this).find('h3').prepend(span);
             } else {
-                //var div = $('<div>').css({
-                //            'background-image': 'url(http://duckduckgo.com/assets/icon_plus.v103.png)',
-                //            'height': '16px',
-                //            'width': '16px',
-                //            'float': 'left',
-                //            'background-repeat': 'no-repeat',
-                //            'padding-right': '2px'
-                //            });
-                //$(this).find('h3').prepend(div);
 
                 span.attr('title', 'Link was added' + EXTENSION_TEXT)
                     .addClass('ddg_filterbubble_box_added');
 
             }
-
-            // console.log(cleanResults.indexOf(dirtyResults[iter]), dirtyResults[iter], cleanResults[iter]);
 
 
             if (dirtyResults.indexOf(cleanResults[iter]) === -1) {
@@ -248,11 +221,6 @@ function updateResults() {
                     iter += 1;
                     return;
                 }
-
-                // adds generated google result
-                //console.log(iter, cleanResults[iter], cleanResultsData[iter]);
-                //console.log(generateGoogleResult(cleanResultsData[iter]));
-
 
             }
 
@@ -317,15 +285,12 @@ function generateGoogleResult(r) {
 
 function getAOLResults(query, callback) {
     var req = new XMLHttpRequest();
-    //req.open('GET', 'http://search.aol.com/aol/search?enabled_terms=&count_override=200&s_it=comsearch51&q=' + encodeURIComponent(query), true);
     var url = 'https://duckduckgo.com/dontbubbleus/' + encodeURIComponent(query);
     console.log(url);
-    //req.open('GET', url, true);
 
     $.get(url, function(data){
         console.log(data) 
         console.log('response:', data);
-        console.log('response:', data)
         var r = $('div', data);
 
         r = r.find('.MSL > ul > li');
