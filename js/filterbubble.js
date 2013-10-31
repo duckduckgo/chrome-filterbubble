@@ -94,7 +94,7 @@ function unhoverize(el) {
 function updateResults() {
     var query = getQueryFromURL();
 
-    console.log(firstPage());
+    //console.log(firstPage());
     if (!firstPage())
         return;
 
@@ -150,8 +150,8 @@ function updateResults() {
             }
         });
 
-        console.log(cleanResults);
-        console.log(dirtyResults);
+        //console.log(cleanResults);
+        //console.log(dirtyResults);
 
 
         var iter = 0;
@@ -286,15 +286,15 @@ function generateGoogleResult(r) {
 function getAOLResults(query, callback) {
     var req = new XMLHttpRequest();
     var url = 'https://duckduckgo.com/dontbubbleus/' + encodeURIComponent(query);
-    console.log(url);
+    //console.log(url);
 
     $.get(url, function(data){
-        console.log(data) 
-        console.log('response:', data);
+        //console.log(data) 
+        //console.log('response:', data);
         var r = $('div', data);
 
         r = r.find('.MSL > ul > li');
-        console.log(r);
+        //console.log(r);
         callback(r);
  
     });
