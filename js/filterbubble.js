@@ -184,7 +184,6 @@ function updateResults() {
 
             if (index != -1) {
                 if (index != iter) {
-                    //span.html('#' + (index + 1) + ' &#10132; ' + '#' + (iter + 1));
                     if (index > iter) {
                         var num = (index - iter);
                         span.html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + num)
@@ -242,10 +241,7 @@ var timeouter = {};
 window.addEventListener("hashchange", updateResults, false);
 
 $(document).ready(function(){
-    //console.log(results);
-
     updateResults();
-
 });
 
 
@@ -284,7 +280,6 @@ function generateGoogleResult(r) {
 }
 
 function getAOLResults(query, callback) {
-    var req = new XMLHttpRequest();
     var url = 'https://duckduckgo.com/dontbubbleus/' + encodeURIComponent(query);
     //console.log(url);
 
