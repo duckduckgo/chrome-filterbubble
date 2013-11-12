@@ -262,10 +262,9 @@ function generateGoogleResult(r) {
         });
 
     var URL = r.url;
-    URL = URL.replace(/https?:\/\//,"");
-    if (URL.length > 76) {
-        URL = URL.slice(0, 76) + "..."; 
-    }
+
+    // replacing just http:// -- that's precisely what Google does
+    URL = URL.replace(/http:\/\//,"");
 
     var resultDiv = $('<div>').attr('class', 'vsc');
     resultDiv.append($('<h3>').prepend(span).append(
