@@ -1,8 +1,8 @@
 {
-  "name": "DuckDuckGo Filter Bubble",
-  "version": "0.2.14",
+  "name": "DontBubble.us",
+  "version": "0.3.1",
   "manifest_version": 2,
-  "description": "DuckDuckGo Filter Bubble plugin",
+  "description": "Experience your search engine's filter bubble.'",
   "icons": {
       "16": "img/icon_16.png",
       "48": "img/icon_48.png",
