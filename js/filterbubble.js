@@ -273,7 +273,10 @@ function generateGoogleResult(r) {
                 .html(r.title)));
     resultDiv.append($('<div>').attr('class', 's').append(
                 $('<div>').attr('class', 'f kv').append(
-                    $('<cite>').html(URL))).append(
+                    $('<cite>').css({'text-overflow': 'ellipsis',
+                                     'overflow': 'hidden',
+                                     'white-space': 'nowrap'})
+                               .html(URL))).append(
                 $('<span>').attr('class', 'st').html(r.desc))
             );
     return $('<li>').attr('class', 'g').append(resultDiv);
@@ -281,17 +284,11 @@ function generateGoogleResult(r) {
 
 function getAOLResults(query, callback) {
     var url = 'https://duckduckgo.com/dontbubbleus/' + encodeURIComponent(query);
-    //console.log(url);
 
     $.get(url, function(data){
-        //console.log(data) 
-        //console.log('response:', data);
         var r = $('div', data);
-
         r = r.find('.MSL > ul > li');
-        //console.log(r);
         callback(r);
- 
     });
 }
 
