@@ -20,27 +20,11 @@ function Background()
     $this = this;
     chrome.extension.onMessage.addListener(function(request, sender, callback){
         console.log(request);
-        if(request.query)
-            $this.query(request.query, callback);
         if (request.newtab)
             $this.newtab(request.newtab);
     });
 
 
-}
-
-Background.prototype.query = function(query, callback) 
-{
-    var req = new XMLHttpRequest();
-    req.open('GET', 'http://m.aol.com/search/default/search.do?query=' + encodeURIComponent(query) + '&invocationType=topsearchbox.waphome&sources=google_websearch&first=0', true);
-
-    req.onreadystatechange = function(data) {
-        if (req.readyState != 4)  { return; } 
-        var r = $(req.responseText);
-        callback(r);
-    }
-
-    req.send(null);
 }
 
 Background.prototype.newtab = function(tab)
