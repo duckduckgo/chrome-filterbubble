@@ -150,8 +150,8 @@ function updateResults() {
             }
         });
 
-        //console.log(cleanResults);
-        //console.log(dirtyResults);
+        console.log(cleanResults);
+        console.log(dirtyResults);
 
 
         var iter = 0;
