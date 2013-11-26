@@ -209,6 +209,7 @@ function updateResults() {
                 span.attr('title', 'Link was added' + EXTENSION_TEXT)
                     .addClass('ddg_filterbubble_box_added');
 
+                $(this).find('h3').prepend(span);
             }
 
 
